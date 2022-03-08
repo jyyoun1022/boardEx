@@ -11,7 +11,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @ToString(exclude = "member")
-public class Board {
+public class Board extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,5 +23,12 @@ public class Board {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    public void changeTitle(String title){
+        this.title=title;
+    }
+    public void changeContent(String content){
+        this.content=content;
+    }
 
 }
