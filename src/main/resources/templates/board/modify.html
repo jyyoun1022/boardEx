@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">게시판 수정 페이지</h1>
+
+        <form th:action="@{/board/modify}" th:method="post">
+
+            <input type="hidden" name="page" th:value="${pageRequestDTO.page}">
+            <input type="hidden" name="type" th:value="${pageRequestDTO.type}">
+            <input type="hidden" name="keyword" th:value="${pageRequestDTO.keyword}">
+
+            <div class="form-group">
+                <label>번호</label>
+                <input type="text" class="form-control" name="bno" th:value="${dto.bno}" readonly>
+            </div>
+            <div class="form-group">
+                <label>제목</label>
+                <input type="text" class="form-control" name="title" th:value="${dto.title}">
+            </div>
+            <div class="form-group">
+                <label>내용</label>
+                <textarea class="form-control" name="content" rows="5">[[${dto.content}]]</textarea>
+            </div>
+            <div class="form-group">
+                <label>작성자</label>
+                <input type="text" name="writer" th:value="${dto.writerName}" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label>작성일</label>
+                <input type="text" name="regDate" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+            </div>
+            <div class="form-group">
+                <label>수정일</label>
+                <input type="text" name="modDate" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+            </div>
+
+        </form>
+        <button type="button" class="btn btn-primary modifyBtn">수정</button>
+        <button type="button" class="btn btn-info listBtn">목록</button>
+        <button type="button" class="btn btn-danger removeBtn">삭제</button>
+
+        <script th:inline="javascript">
+
+            var actionForm =$("form");
+
+            $(".modifyBtn").click(function(){
+
+            if(!confirm("수정하실래요?")){
+            return;
+            }
+
+            actionForm
+            .attr("action","/board/modify")
+            .attr("method","post")
+            .submit();
+            });
+
+            $(".removeBtn").click(function(){
+            actionForm
+            .attr("action","/board/remove")
+            .attr("method","post")
+            .submit();
+            });
+
+            $(".listBtn").click(function(){
+
+            var page = $("input[name='name']");
+            var type = $("input[type='type']");
+            var keyword = $("input[keyword='keyword']");
+
+            actionForm.empty();
+
+            actionForm.append(page);
+            actionForm.append(type);
+            actionForm.append(keyword);
+
+            actionForm
+            .attr("action","/board/list")
+            .attr("method","get")
+            .submit();
+            });
+
+
+
+
+
+        </script>
+
+    </th:block>
+</th:block>
