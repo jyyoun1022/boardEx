@@ -94,12 +94,7 @@ public class BoardRepositoryTests {
 
         boardRepository.search1();
     }
-    @Test
-    @DisplayName("JOIN querydsl 테스트")
-    void testSearch2(){
 
-        boardRepository.testSearch1();
-    }
 
     @Test
     @DisplayName("페이지 querydsl 테스트")
@@ -108,6 +103,21 @@ public class BoardRepositoryTests {
         Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
 
         Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);
+    }
+
+    /**
+     * 여기서 왜 Title10을 검색하였는데 Title11 부터 쭉나오는지 의문..??(11-19),(21,31,41,....101) 왜?
+     */
+    @Test
+    @DisplayName("페이지처리 테스트")
+    void testSearchPage(){
+
+        Pageable pageable = PageRequest.of(0,10,
+                Sort.by("bno").descending()
+                        .and(Sort.by("title").ascending()));
+
+        Page<Object[]> result = boardRepository.searchPage("t", "Title10", pageable);
+
     }
     }
 

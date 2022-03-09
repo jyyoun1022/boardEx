@@ -10,7 +10,6 @@ public interface SearchBoardRepository {
 
     Board search1();
 
-    Board testSearch1();
 
     Page<Object[]> searchPage(String type, String keyword, Pageable pageable);
 }
