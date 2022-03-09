@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zerock.board.entity.Board;
+import org.zerock.board.repository.search.BoardRepositoryCustom;
 import org.zerock.board.repository.search.SearchBoardRepository;
 
 import java.util.List;
 
-public interface BoardRepository extends JpaRepository<Board,Long> , SearchBoardRepository {
+public interface BoardRepository extends JpaRepository<Board,Long> , SearchBoardRepository, BoardRepositoryCustom {
 
     /**
      *  틀정 게시물과 해당 작성자가 속한 게시물을 조회
