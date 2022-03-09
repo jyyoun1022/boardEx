@@ -88,5 +88,26 @@ public class BoardRepositoryTests {
 
         System.out.println(Arrays.toString(arr));
     }
+    @Test
+    @DisplayName("QUERYDSL 테스트")
+    void testSearch1(){
+
+        boardRepository.search1();
+    }
+    @Test
+    @DisplayName("JOIN querydsl 테스트")
+    void testSearch2(){
+
+        boardRepository.testSearch1();
+    }
+
+    @Test
+    @DisplayName("페이지 querydsl 테스트")
+    void testSearch3(){
+
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+
+        Page<Object[]> result = boardRepository.searchPage("t", "1", pageable);
+    }
     }
 
