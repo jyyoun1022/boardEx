@@ -14,6 +14,7 @@ import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Member;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -77,6 +78,8 @@ public class BoardRepositoryTests {
         content.stream().forEach(i -> System.out.println(Arrays.toString(i)));
         System.out.println();
         System.out.println(content.size());
+
+
     }
     @Test
     @DisplayName("조회화면에서 필요한 화면")
