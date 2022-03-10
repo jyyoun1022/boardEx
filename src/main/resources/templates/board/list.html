@@ -12,6 +12,26 @@
             </a>
         </span></h1>
 
+        <form th:action="@{/board/list}" th:method="get" id="searchForm">
+            <div class="input-group">
+                <input type="hidden" name="page" value="1">
+                <div class="input-group-prepend">
+                    <select class="custom-select" name="type">
+                        <option th:selected="${pageRequestDTO.type == null}">선택해주세요.</option>
+                        <option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
+                        <option value="c" th:selected="${pageRequestDTO.type == 'c'}">내용</option>
+                        <option value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
+                        <option value="tc" th:selected="${pageRequestDTO.type == 'tc'}">제목+내용</option>
+                        <option value="tcw" th:selected="${pageRequestDTO.type == 'tcw'}">제목+내용+작성자</option>
+                    </select>
+                </div>
+                    <input type="text" class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}">
+                    <div class="input-group-append" id="button-addon4">
+                        <button class="btn btn-outline-secondary btn-search" type="button">검색</button>
+                        <button class="btn btn-outline-secondary btn-clear" type="button">초기화</button>
+                    </div>
+                </div>
+        </form>
 
         <table class="table table-striped">
             <thead>
@@ -62,5 +82,17 @@
                 )}">다음페이지</a>
             </li>
         </ul>
+
+
+        <script th:inline="javascript">
+            var searchForm =$("#searchForm");
+
+            $('.btn-search').click(function(){
+                searchForm.submit();
+                });
+            $('.btn-clear').click(function(){
+                searchForm.empty().submit();
+                });
+        </script>
     </th:block>
 </th:block>

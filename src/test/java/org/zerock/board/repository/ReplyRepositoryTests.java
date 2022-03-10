@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Reply;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -46,5 +47,17 @@ public class ReplyRepositoryTests {
         System.out.println(reply);
         System.out.println("==================");
         System.out.println(reply.getBoard());
+    }
+
+    @Test
+    @DisplayName("게시물에 댓글리스트 확인")
+    void testListByBoard(){
+
+        List<Reply> replyList = replyRepository.getRepliesByBoardOrderByRno(
+                Board.builder().bno(99L).build());
+
+        replyList.forEach(reply -> System.out.println(reply));
+
+
     }
 }
