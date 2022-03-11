@@ -10,7 +10,7 @@ public interface ReplyService {
 
     Long register(ReplyDTO replyDTO);
 
-    List<Reply> getList(Long bno);
+    List<ReplyDTO> getList(Long bno);
 
     void modify(ReplyDTO replyDTO);
 

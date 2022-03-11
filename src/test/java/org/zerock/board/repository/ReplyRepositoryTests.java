@@ -28,7 +28,7 @@ public class ReplyRepositoryTests {
 
             Reply reply = Reply.builder()
                     .text("Reply.."+i)
-                    .replyer("guest")
+                    .replier("guest")
                     .board(board)
                     .build();
 

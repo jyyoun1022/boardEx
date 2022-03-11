@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -120,6 +121,8 @@ public class BoardRepositoryTests {
                         .and(Sort.by("title").ascending()));
 
         Page<Object[]> result = boardRepository.searchPage("t", "Title10", pageable);
+
+
 
     }
     }
